@@ -1,8 +1,13 @@
 [
     {
+        "name": "테스트",
+        "dep": "test1",
+        "info": "ㅇ"
+    },
+    {
         "name": "헌법",
         "dep": "헌법",
-        "info": "[이 법률은 사이트에서 확인 하실 수 있습니다.](https://github.com/AlDeRAn28/KOR_BOOK/blob/master/main.md#%EC%A0%9C-1%EC%9E%A5--%EC%B4%9D%EA%B0%95-)"
+        "info": "[이 법률은 사이트에서 확인 하실 수 있습니다.](https://github.com/AlDeRAn28/KOR_BOOK/wiki/헌법)"
     },
     {
         "name": "디스코드 법",
@@ -12,16 +17,11 @@
     {
         "name": "도로교통법",
         "dep": "도로교통",
-        "info": "[이 법률은 사이트에서 확인 하실 수 있습니다.](https://github.com/AlDeRAn28/KOR_BOOK/blob/master/main.md#%EC%A0%9C-2%EC%9E%A5--%EB%8F%84%EB%A1%9C%EA%B5%90%ED%86%B5%EB%B2%95-)"
+        "info": "[이 법률은 사이트에서 확인 하실 수 있습니다.](https://github.com/AlDeRAn28/KOR_BOOK/wiki/헌법#제-2장--도로교통법-)"
     },
     {
-        "name": "테스트",
-        "dep": "test1",
-        "info": "ㅇ"
-    },
-    {
-        "name": "테스트2",
-        "dep": "test2",
-        "info": "ㅇ"
+        "name": "헌법 총강",
+        "dep": "총강",
+        "info": "[이 법률은 사이트에서 확인 하실 수 있습니다.](https://github.com/AlDeRAn28/KOR_BOOK/wiki/헌법#제-1장--총강-)"
     }
 ]
