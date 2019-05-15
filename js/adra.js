@@ -14,7 +14,7 @@ $(function() {
     } else {
         server_info = "";
     }
-    GameDetails(null, null, null, null, 76561198128012369, null);
+    GameDetails(null, null, null, null, 76561197960265728, null);
 });
 
 function SetStatusChanged ( status ) {
@@ -36,10 +36,21 @@ function GameDetails( servername, serverurl, mapname, maxplayers, steamid, gamem
                 server_info_html += text.server_info_n.format(servername);
             } if (set[i] == 'g') {
                 server_info_html += text.server_info_g.format(gamemode);
+            } if (set[i] == 's') {
+                server_info_html += playerinfo(steamid);
             }
         }
         $("#logo info").html(server_info_html);
     }
+}
+
+function playerinfo(sid) {
+    var say = String(sid);
+    say = Number(say.substring(1));
+    var y = say - 6561197960265728;
+    var x = say % 2;
+    y = parseInt((y - x) / 2);
+    return text.server_info_s.format(x, y);
 }
 
 var audio, video;
