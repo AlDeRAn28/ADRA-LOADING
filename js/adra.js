@@ -2,21 +2,48 @@
 //
 // ⓒ 2019. AlDeRAn All rights reserved.
 // 저작자: AlDeRAn(https://steamcommunity.com/profiles/76561198128012369/)
-function SetStatusChanged ( status ) {
-    if (status == "Starting Lua...") return $('status').html("다운로드 완료.. 접속시도중..");
-    $('status').html(status);
-}
-
-var audio, video;
-var a_i = 0, v_i = 0;
-
 $(function() {
     $("body").attr('onload', 'onbody()');
     $("body").append("<audio id=\"l_audio\" onended=\"on_a_embed()\"></audio>");
     $("body").append("<video id=\"l_video\" onended=\"on_v_embed()\"></video>");
     $("body").append("<div id=\"overlay\"></div>");
-    $("body").append("<div id=\"logo\"><img></div>");
+    $("body").append("<div id=\"logo\"><img><info></info></div>");
+    $("status").html(text.load_start); 
+    if (logo && logo != "") {
+        $('#logo img').attr('src', "images/logo/"+logo);
+    } else {
+        server_info = "";
+    }
+    GameDetails(null, null, null, null, 76561198128012369, null);
 });
+
+function SetStatusChanged ( status ) {
+    if (status == "Starting Lua...") return $('status').html(text.load_end);
+    $('status').html(status);
+}
+
+function GameDetails( servername, serverurl, mapname, maxplayers, steamid, gamemode ) {
+    if (server_info && server_info != "") {
+        var server_info_html = text.server_info_t;
+        var set = [];
+        for (var i = 0; i < server_info.length; i++) {
+            set[i] = server_info.charAt(i);
+        }
+        for (var i in set) {
+            if (set[i] == 'm') {
+                server_info_html += text.server_info_m.format(mapname);
+            } if (set[i] == 'n') {
+                server_info_html += text.server_info_n.format(servername);
+            } if (set[i] == 'g') {
+                server_info_html += text.server_info_g.format(gamemode);
+            }
+        }
+        $("#logo info").html(server_info_html);
+    }
+}
+
+var audio, video;
+var a_i = 0, v_i = 0;
 
 function onbody() {
     if (play_type == "a") {
@@ -35,10 +62,6 @@ function onbody() {
     } else {
         play_type = 'a';
         onbody()
-    }
-
-    if (logo && logo != "") {
-        $('#logo img').attr('src', "images/logo/"+logo);
     }
 }
 
@@ -64,7 +87,14 @@ function on_v_embed() {
     video.volume = video_volume;
 }
 
-// 배열 랜덤 알고리즘
+function img() {
+    for (var i = 0; i < img_list.length; i++) {
+        img_list[i] = 'images/' + img_list[i];
+    }
+    img_list = random(img_list);
+    $.backstretch(img_list, {fade: img_fade, duration: img_duration});
+}
+
 function random(array) {
     var m = array.length, t, i;
 
@@ -83,10 +113,12 @@ function random(array) {
     return array;
 }
 
-function img() {
-    for (var i = 0; i < img_list.length; i++) {
-        img_list[i] = 'images/' + img_list[i];
+String.prototype.format = function() {
+    var s = this,
+        i = arguments.length;
+
+    while (i--) {
+        s = s.replace(new RegExp('\\{' + i + '\\}', 'gm'), arguments[i]);
     }
-    img_list = random(img_list);
-    $.backstretch(img_list, {fade: img_fade, duration: img_duration});
-}
+    return s;
+};
