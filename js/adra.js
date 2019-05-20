@@ -50,7 +50,7 @@ function playerinfo(sid) {
     var y = say - 6561197960265728;
     var x = say % 2;
     y = parseInt((y - x) / 2);
-    return text.server_info_s.format(x, y);
+    return text.server_info_s.format(`STEAM_0:${x}:${y}`);
 }
 
 var audio, video;
